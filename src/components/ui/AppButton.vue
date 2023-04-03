@@ -17,7 +17,7 @@ const slots = useSlots();
 
 <template>
   <button
-    class="rounded-[57px] flex gap-[8px] justify-around my-4 items-center"
+    class="rounded-[57px] flex gap-[8px] justify-around items-center transition-colors"
     :class="{
       'pt-[14px] pb-[12px] px-[24px] text-[16px] leading-[24px]': !centerIcon,
       'py-[14px] px-[14px]': centerIcon,

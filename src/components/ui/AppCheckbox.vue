@@ -2,13 +2,13 @@
 import { ref } from "vue";
 import { v4 as uuidv4 } from "uuid";
 
-const { name, disabled } = defineProps({
-  name: {
+const { value, disabled } = defineProps({
+  value: {
     type: String,
     required: false,
   },
   disabled: {
-    validator(value) {
+    validator: (value) => {
       return [true, false].includes(value);
     },
     require: false,
@@ -24,21 +24,20 @@ const id = uuidv4();
       ><input
         type="checkbox"
         v-model="checkbox"
-        :name="name"
+        :name="value"
         :id="id"
-        :value="name"
+        :value="value"
         class="hidden"
         :disabled="disabled"
       /><span
         class="w-[20px] h-[20px] block border rounded-[4px]"
         :class="{
-          'bg-[url(@/assets/icons/check.svg)] bg-blue-dark border-blue-dark':
-            checkbox,
+          'bg-[url(~/icons/check.svg)] bg-blue-dark border-blue-dark': checkbox,
           'border-neutral-60': !checkbox,
           'border-neutral-60 bg-neutral-20': disabled === true,
         }"
       ></span
-      >{{ name }}</label
+      >{{ value }}</label
     >
   </div>
 </template>

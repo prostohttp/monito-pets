@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
-import iconUp from "@/assets/icons/up.svg";
-import iconDown from "@/assets/icons/down.svg";
+import iconUp from "~/icons/up.svg";
+import iconDown from "~/icons/down.svg";
 
 const { list } = defineProps({
   list: {
@@ -18,10 +18,18 @@ const selectHandler = (item) => {
   selected.value = item;
   isOpen.value = !isOpen.value;
 };
+const clickOutside = () => {
+  if (isOpen.value) {
+    isOpen.value = !isOpen.value;
+  }
+};
 </script>
 
 <template>
-  <div class="relative mb-[6px] text-neutral-60">
+  <div
+    class="relative mb-[6px] text-neutral-60 inline-block"
+    v-click-outside="clickOutside"
+  >
     <div class="relative inline-block">
       <span
         class="inline-block w-[250px] pt-[10px] pb-[8px] pl-[20px] pr-[25px] border rounded-[20px] border-neutral-20 font-[500] text-[15px] cursor-pointer"
