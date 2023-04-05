@@ -17,23 +17,23 @@ const slots = useSlots();
 
 <template>
   <button
-    class="rounded-[57px] flex gap-[8px] justify-around items-center transition-colors"
+    class="flex items-center justify-center gap-[8px] rounded-[57px] text-body16m transition-colors"
     :class="{
-      'pt-[14px] pb-[12px] px-[24px] text-[16px] leading-[24px]': !centerIcon,
-      'py-[14px] px-[14px]': centerIcon,
+      'px-[30px] pb-[8px] pt-[10px] text-[16px] leading-[24px]': !centerIcon,
+      'px-[14px] py-[14px]': centerIcon,
     }"
   >
     <template v-if="leftIcon">
-      <img :src="leftIcon" alt="" />
+      <img :src="leftIcon" alt="" class="h-[15px] w-[15px]" />
     </template>
     <template v-if="!centerIcon">
       <slot />
     </template>
     <template v-else>
-      <img :src="centerIcon" alt="" />
+      <img :src="centerIcon" alt="" class="h-[15px] w-[15px]" />
     </template>
     <template v-if="rightIcon">
-      <img :src="rightIcon" alt="" />
+      <img :src="rightIcon" alt="" class="h-[15px] w-[15px]" />
     </template>
   </button>
 </template>

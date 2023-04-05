@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div>
+  <div class="m-auto max-w-1180">
     <h4>Contact</h4>
   </div>
 </template>

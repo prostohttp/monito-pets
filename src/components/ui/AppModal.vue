@@ -33,16 +33,16 @@ onUnmounted(() => {
 <template>
   <template v-if="isOpen">
     <div
-      class="fixed inset-0 w-screen h-screen bg-blue-dark/70 z-[999]"
+      class="fixed inset-0 z-[1001] h-screen w-screen bg-blue-dark/70"
       @click="emit('closeHandler')"
     ></div>
     <div
-      class="fixed bg-white px-[40px] pb-[15px] pt-[50px] min-w-[320px] w-auto rounded-[16px] top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] z-[1000] shadow-dropDown overflow-y-auto max-h-[90%]"
+      class="fixed left-1/2 top-1/2 z-[1002] max-h-[90%] w-auto min-w-[320px] -translate-x-[50%] -translate-y-[50%] overflow-y-auto rounded-[16px] bg-white px-[40px] pb-[35px] pt-[50px] shadow-dropDown"
     >
       <img
         :src="closeIcon"
         alt="close"
-        class="absolute top-[16px] right-[16px] w-[30px] h-[30px] cursor-pointer"
+        class="absolute right-[16px] top-[16px] h-[30px] w-[30px] cursor-pointer"
         @click="emit('closeHandler')"
       />
       <slot />

@@ -34,7 +34,7 @@ const isOpen = ref(false);
 </script>
 
 <template>
-  <main class="max-w-1180 mx-auto">
+  <main class="mx-auto max-w-1180">
     <h1></h1>
     <h6 class="text-center text-head36m">Elements</h6>
     <AppCheckbox
@@ -52,12 +52,12 @@ const isOpen = ref(false);
     <AppDropdown :list="dropdownList"></AppDropdown>
 
     <h6>Buttons</h6>
-    <Button class="text-white bg-blue-dark">Click here</Button>
-    <Button :left-icon="left" class="text-white bg-blue-dark"
+    <Button class="bg-blue-dark text-white">Click here</Button>
+    <Button :left-icon="left" class="bg-blue-dark text-white"
       >Click here
     </Button>
-    <Button :right-icon="left" class="text-white bg-sea">Click here</Button>
-    <Button :right-icon="left" :left-icon="left" class="text-white bg-sea"
+    <Button :right-icon="left" class="bg-sea text-white">Click here</Button>
+    <Button :right-icon="left" :left-icon="left" class="bg-sea text-white"
       ><a href="#">Click here</a></Button
     >
     <Button :center-icon="left" class="bg-sea" @click="click"></Button>
@@ -65,7 +65,7 @@ const isOpen = ref(false);
     <h6>Modal window</h6>
     <Button
       :right-icon="left"
-      class="text-white bg-sea"
+      class="bg-sea text-white"
       @click="isOpen = !isOpen"
       >Open modal
     </Button>

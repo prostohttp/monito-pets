@@ -1,14 +1,15 @@
 <script setup>
 import { v4 as uuidv4 } from "uuid";
-import { ref } from "vue";
 
 const { placeholder, label, icon, leftIcon } = defineProps({
   placeholder: String,
   label: String,
   icon: String,
   leftIcon: String,
+  modelValue: String,
 });
-const input = ref("");
+const emit = defineEmits(["update:model-value"]);
+
 const id = uuidv4();
 </script>
 
@@ -22,7 +23,7 @@ export default {
   <template v-if="label">
     <label
       :for="id"
-      class="w-full text-neutral-80 text-[15px] font-[500] mb-[10px] block"
+      class="mb-[10px] block w-full text-[15px] font-[500] text-neutral-80"
       >{{ label }}
     </label>
   </template>
@@ -31,21 +32,22 @@ export default {
       <img
         :src="leftIcon"
         alt="icon"
-        class="absolute top-1/2 left-[14px] -translate-y-1/2 cursor-pointer"
+        class="absolute left-[14px] top-1/2 -translate-y-1/2 cursor-pointer"
       />
     </template>
     <input
       :id="label ? id : null"
       :placeholder="placeholder"
-      class="py-[14px] px-[28px] border border-neutral-40 text-neutral-80 placeholder-neutral-40 text-[15px] leading-[20px] font-[500] w-full"
+      class="w-full border border-neutral-40 px-[28px] py-[14px] text-[15px] font-[500] leading-[20px] text-neutral-80 placeholder-neutral-40"
       v-bind="$attrs"
-      v-model="input"
+      :value="modelValue"
+      @input="emit('update:model-value', $event.target.value)"
     />
     <template v-if="icon">
       <img
         :src="icon"
         alt="icon"
-        class="absolute top-1/2 right-[14px] -translate-y-1/2 cursor-pointer"
+        class="absolute right-[14px] top-1/2 -translate-y-1/2 cursor-pointer"
     /></template>
   </div>
 </template>

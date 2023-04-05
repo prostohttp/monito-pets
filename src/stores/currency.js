@@ -8,20 +8,28 @@ import us from "~/icons/us.svg";
 export const useCurrencyStore = defineStore("currency", () => {
   const currencyList = ref([
     {
+      code: "ru",
       currency: "RUB",
       flag: ru,
+      well: 77,
     },
     {
+      code: "eu",
       currency: "EUR",
       flag: eu,
+      well: 0.92,
     },
     {
+      code: "us",
       currency: "USD",
       flag: us,
+      well: 1,
     },
     {
+      code: "vn",
       currency: "VND",
       flag: vn,
+      well: 90,
     },
   ]);
 
