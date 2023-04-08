@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import { v4 as uuidv4 } from "uuid";
 import partner1 from "~/images/partners-1.png";
 import partner2 from "~/images/partners-2.png";
 import partner3 from "~/images/partners-3.png";
@@ -12,38 +11,38 @@ import partner7 from "~/images/partners-7.png";
 export const usePartnersStore = defineStore("partners", () => {
   const partners = ref([
     {
-      id: uuidv4(),
-      name: "Sheba",
+      id: 1,
+      title: "Sheba",
       picture: partner1,
     },
     {
-      id: uuidv4(),
-      name: "Whiskas",
+      id: 2,
+      title: "Whiskas",
       picture: partner2,
     },
     {
-      id: uuidv4(),
-      name: "Bakers",
+      id: 3,
+      title: "Bakers",
       picture: partner3,
     },
     {
-      id: uuidv4(),
-      name: "Felix",
+      id: 4,
+      title: "Felix",
       picture: partner4,
     },
     {
-      id: uuidv4(),
-      name: "Good boy",
+      id: 5,
+      title: "Good boy",
       picture: partner5,
     },
     {
-      id: uuidv4(),
-      name: "Butcher's",
+      id: 6,
+      title: "Butcher's",
       picture: partner6,
     },
     {
-      id: uuidv4(),
-      name: "Pedigree",
+      id: 7,
+      title: "Pedigree",
       picture: partner7,
     },
   ]);

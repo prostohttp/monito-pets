@@ -13,15 +13,19 @@ const { value, disabled } = defineProps({
     },
     require: false,
   },
+  image: {
+    type: String,
+    required: false,
+  },
 });
 const checkbox = ref(false);
 const id = uuidv4();
 </script>
 
 <template>
-  <div class="flex mb-[10px]">
-    <label :for="id" class="flex gap-[12px] w-auto"
-      ><input
+  <div class="mb-[10px] flex">
+    <label :for="id" class="flex w-auto gap-[12px]">
+      <input
         type="checkbox"
         v-model="checkbox"
         :name="value"
@@ -29,15 +33,20 @@ const id = uuidv4();
         :value="value"
         class="hidden"
         :disabled="disabled"
-      /><span
-        class="w-[20px] h-[20px] block border rounded-[4px]"
+      />
+      <span
+        class="block h-[20px] w-[20px] rounded-[4px] border"
         :class="{
-          'bg-[url(~/icons/check.svg)] bg-blue-dark border-blue-dark': checkbox,
+          'border-blue-dark bg-blue-dark bg-[url(~/icons/check.svg)]': checkbox,
           'border-neutral-60': !checkbox,
           'border-neutral-60 bg-neutral-20': disabled === true,
         }"
-      ></span
-      >{{ value }}</label
-    >
+      >
+      </span>
+      <span v-if="image"
+        ><img :src="image" :alt="value" /><span>{{ value }}</span></span
+      >
+      <template v-else>{{ value }}</template>
+    </label>
   </div>
 </template>

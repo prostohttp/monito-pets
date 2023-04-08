@@ -36,20 +36,21 @@ const currencyFormat = (product) => {
   <div
     class="basis-3/12 rounded-[12px] bg-neutral-0 px-[8px] pb-[20px] pt-[8px] shadow-product"
   >
-    <router-link
-      :to="{ name: 'product', params: { product: product.id } }"
-      tag="div"
-      class="flex flex-col gap-[16px]"
-    >
-      <img
-        :src="product.image"
-        :alt="product.name"
-        class="aspect-square rounded-[12px] object-cover object-center"
-      />
+    <div class="flex flex-col gap-[16px]">
+      <router-link :to="{ name: 'product', params: { product: product.id } }">
+        <img
+          :src="product.image"
+          :alt="product.title"
+          class="aspect-square w-full rounded-[12px] object-cover object-center"
+        />
+      </router-link>
       <div class="flex flex-col gap-[4px] px-[8px]">
-        <div class="text-body14b text-neutral-100 sm:text-body16b">
-          {{ product.name }}
-        </div>
+        <router-link
+          :to="{ name: 'product', params: { product: product.id } }"
+          class="text-body14b text-neutral-100 sm:text-body16b"
+        >
+          {{ product.title }}
+        </router-link>
         <div class="flex gap-[10px] text-body12m text-neutral-60">
           <div v-if="product.options.gender">
             Gene:
@@ -79,6 +80,6 @@ const currencyFormat = (product) => {
           </span>
         </div>
       </div>
-    </router-link>
+    </div>
   </div>
 </template>

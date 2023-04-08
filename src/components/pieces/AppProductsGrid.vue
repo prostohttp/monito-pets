@@ -1,6 +1,4 @@
 <script setup>
-import { useProductStore } from "@/stores/products";
-import { storeToRefs } from "pinia";
 import AppProduct from "@/components/pieces/AppProduct.vue";
 
 const {} = defineProps({
@@ -12,17 +10,25 @@ const {} = defineProps({
     type: Number,
     required: false,
   },
+  products: {
+    type: Array,
+    required: true,
+  },
+  grid4: {
+    type: Boolean,
+    default: true,
+  },
 });
-
-const productStore = useProductStore();
-const { exchangeRateProducts } = storeToRefs(productStore);
 </script>
 
 <template>
-  <div class="grid grid-cols-2 gap-[20px] sm:grid-cols-3 lg:grid-cols-4">
+  <div
+    class="grid grid-cols-2 gap-[20px] sm:grid-cols-3"
+    :class="{ 'lg:grid-cols-4': grid4, 'lg:grid-cols-3': !grid4 }"
+  >
     <AppProduct
       :product="product"
-      v-for="product in exchangeRateProducts.slice(first, last)"
+      v-for="product in products.slice(first, last)"
     >
     </AppProduct>
   </div>

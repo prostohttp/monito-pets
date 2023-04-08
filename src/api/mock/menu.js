@@ -56,7 +56,7 @@ export const menuItems = [
   },
   {
     title: "About",
-    to: "/information/about",
+    to: "/information/1",
   },
   {
     title: "Contact",
@@ -84,6 +84,6 @@ export const socialItems = [
 ];
 
 export const menu2Items = [
-  { title: "Terms of Service", to: "/information/terms" },
-  { title: "Privacy Policy", to: "/information/policy" },
+  { title: "Privacy Policy", to: "/information/2" },
+  { title: "Terms of Service", to: "/information/3" },
 ];

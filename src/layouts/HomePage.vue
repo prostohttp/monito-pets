@@ -48,35 +48,12 @@ const isOpen = ref(false);
               <div class="mb-[30px] mt-[32px] flex gap-[16px]">
                 <AppButton
                   :right-icon="playIcon"
-                  class="border-[1.5px] border-blue-dark bg-transparent"
+                  class="border-[1.5px] border-blue-dark bg-transparent px-[30px] py-[10px]"
                   @click="isOpen = !isOpen"
                 >
                   View Intro
                 </AppButton>
-                <teleport to="body">
-                  <!--<transition name="fade">-->
-                  <div v-if="isOpen">
-                    <AppModal
-                      :isOpen="isOpen"
-                      @close-handler="isOpen = !isOpen"
-                      :overflow="true"
-                    >
-                      <h2 class="text-center text-head36b">Adopt dog</h2>
-                      <div class="aspect-video overflow-hidden">
-                        <iframe
-                          width="560"
-                          height="315"
-                          src="https://www.youtube.com/embed/YQDDm9HLkV4"
-                          title="YouTube video player"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                          allowfullscreen
-                        ></iframe>
-                      </div>
-                    </AppModal>
-                  </div>
-                  <!--</transition>-->
-                </teleport>
-                <AppButton class="bg-blue-dark text-white">
+                <AppButton class="bg-blue-dark px-[30px] py-[10px] text-white">
                   Explore Now
                 </AppButton>
               </div>
@@ -94,6 +71,25 @@ const isOpen = ref(false);
   </header>
   <slot />
   <Footer />
+  <teleport to="body">
+    <!--<transition name="fade">-->
+    <div v-show="isOpen">
+      <AppModal :isOpen="isOpen" @close-handler="isOpen = !isOpen">
+        <h2 class="text-center text-head36b">Adopt dog</h2>
+        <div class="aspect-video overflow-hidden">
+          <iframe
+            width="100%"
+            height="315"
+            src="https://www.youtube.com/embed/YQDDm9HLkV4"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </AppModal>
+    </div>
+    <!--</transition>-->
+  </teleport>
 </template>
 
 <!--<style scoped>-->

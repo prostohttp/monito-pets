@@ -8,9 +8,14 @@ const { title } = defineProps({
     type: String,
     required: true,
   },
+  open: {
+    type: Boolean,
+    default: false,
+    required: false,
+  },
 });
 
-const isOpen = ref(false);
+const isOpen = ref(open);
 </script>
 
 <script>
@@ -22,7 +27,7 @@ export default {
 <template>
   <span
     @click="isOpen = !isOpen"
-    class="flex gap-[5px] justify-between cursor-pointer"
+    class="flex cursor-pointer gap-[10px]"
     v-bind="$attrs"
   >
     {{ title }}
@@ -30,9 +35,9 @@ export default {
     <img :src="up" v-else alt="icon" class="w-[12px]" />
   </span>
   <transition name="fade">
-    <template v-if="isOpen">
+    <div v-show="isOpen">
       <slot />
-    </template>
+    </div>
   </transition>
 </template>
 
