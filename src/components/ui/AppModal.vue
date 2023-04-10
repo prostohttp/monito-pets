@@ -31,7 +31,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <template v-if="isOpen">
+  <div v-if="isOpen">
     <div
       class="fixed inset-0 z-[1001] h-full w-full bg-blue-dark/70"
       @click="emit('closeHandler')"
@@ -47,5 +47,5 @@ onUnmounted(() => {
       />
       <slot />
     </div>
-  </template>
+  </div>
 </template>

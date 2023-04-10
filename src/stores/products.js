@@ -2,6 +2,7 @@ import { defineStore, storeToRefs } from "pinia";
 import { computed, ref } from "vue";
 import { useCurrencyStore } from "@/stores/currency";
 import { productsList } from "@/api/mock/products";
+import { flattenObject } from "@/helpers/functions";
 
 export const useProductStore = defineStore("product", () => {
   const exchangeRate = [
@@ -12,39 +13,28 @@ export const useProductStore = defineStore("product", () => {
   ];
   const currencyStore = useCurrencyStore();
   const { currentCurrency } = storeToRefs(currencyStore);
-  const productsByCategory = ref([]);
-  const products = ref(productsList);
+  const initialProducts = ref(productsList);
   const currentRate = computed(() => {
     return exchangeRate.find((el) => el.code === currentCurrency.value.code)[
       "rate"
     ];
   });
 
+  const products = computed(() => {
+    return initialProducts.value.map((product) => flattenObject(product));
+  });
+
   const exchangeRateProducts = computed(() => {
     return products.value.map((product) => {
       return {
         ...product,
-        options: {
-          ...product.options,
-          price: currentRate.value * product.options.price,
-        },
+        price: currentRate.value * product.price,
       };
     });
   });
 
-  const productsByCategoryHandler = (catId) => {
-    productsByCategory.value = exchangeRateProducts.value.filter((product) => {
-      if (Array.isArray(product.categoryId)) {
-      } else {
-        return product.categoryId === +catId;
-      }
-    });
-  };
-
   return {
     products,
     exchangeRateProducts,
-    productsByCategoryHandler,
-    productsByCategory,
   };
 });

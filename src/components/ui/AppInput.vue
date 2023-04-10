@@ -1,13 +1,19 @@
 <script setup>
 import { v4 as uuidv4 } from "uuid";
 
-const { placeholder, label, icon, leftIcon } = defineProps({
-  placeholder: String,
-  label: String,
-  icon: String,
-  leftIcon: String,
-  modelValue: String,
-});
+const { placeholder, label, icon, leftIcon, modelValue, relative } =
+  defineProps({
+    placeholder: String,
+    label: String,
+    icon: String,
+    leftIcon: String,
+    modelValue: {
+      type: String,
+    },
+    relative: {
+      type: Boolean,
+    },
+  });
 const emit = defineEmits(["update:model-value"]);
 
 const id = uuidv4();
@@ -27,7 +33,7 @@ export default {
       >{{ label }}
     </label>
   </template>
-  <div class="w-full">
+  <div class="w-full" :class="{ relative: relative }">
     <template v-if="leftIcon">
       <img
         :src="leftIcon"
@@ -47,7 +53,7 @@ export default {
       <img
         :src="icon"
         alt="icon"
-        class="absolute right-[14px] top-1/2 -translate-y-1/2 cursor-pointer"
+        class="absolute right-[14px] top-1/2 -translate-y-1/2"
     /></template>
   </div>
 </template>

@@ -3,7 +3,7 @@ import { ref } from "vue";
 import up from "~/icons/up.svg";
 import down from "~/icons/down.svg";
 
-const { title } = defineProps({
+const { title, open, fullWith } = defineProps({
   title: {
     type: String,
     required: true,
@@ -12,6 +12,10 @@ const { title } = defineProps({
     type: Boolean,
     default: false,
     required: false,
+  },
+  fullWith: {
+    type: Boolean,
+    default: true,
   },
 });
 
@@ -28,6 +32,7 @@ export default {
   <span
     @click="isOpen = !isOpen"
     class="flex cursor-pointer gap-[10px]"
+    :class="{ 'justify-between': fullWith }"
     v-bind="$attrs"
   >
     {{ title }}

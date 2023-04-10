@@ -1,7 +1,11 @@
-import { defineStore } from "pinia";
+import { defineStore, storeToRefs } from "pinia";
 import { computed, ref } from "vue";
+import { useProductStore } from "@/stores/products";
 
 export const useCategoryStore = defineStore("category", () => {
+  const productStore = useProductStore();
+  const { exchangeRateProducts } = storeToRefs(productStore);
+
   const categories = ref([
     {
       id: 1,
@@ -49,6 +53,8 @@ export const useCategoryStore = defineStore("category", () => {
       ],
     },
   ]);
+  const productsByCategory = ref([]);
+  const productsByCategoryCopy = ref([]);
   const flatten = ref([]);
 
   const flattenCategories = computed(() => {
@@ -62,6 +68,23 @@ export const useCategoryStore = defineStore("category", () => {
     return flatten.value;
   });
 
+  const productsByCategoryHandler = (catId) => {
+    productsByCategory.value = exchangeRateProducts.value.filter((product) => {
+      if (Array.isArray(product.categoryId)) {
+      } else {
+        return product.categoryId === +catId;
+      }
+    });
+    productsByCategoryCopy.value = exchangeRateProducts.value.filter(
+      (product) => {
+        if (Array.isArray(product.categoryId)) {
+        } else {
+          return product.categoryId === +catId;
+        }
+      }
+    );
+  };
+
   const currentCategoryHandler = (id) => {
     return flattenCategories.value.find((category) => category.id === +id);
   };
@@ -70,5 +93,8 @@ export const useCategoryStore = defineStore("category", () => {
     categories,
     flattenCategories,
     currentCategoryHandler,
+    productsByCategoryHandler,
+    productsByCategory,
+    productsByCategoryCopy,
   };
 });

@@ -25,7 +25,7 @@ const currencyFormat = (product) => {
     locale = "en-US";
   }
   return (
-    new Intl.NumberFormat(locale).format(product.options.price) +
+    new Intl.NumberFormat(locale).format(product.price) +
     " " +
     currentCurrency.value.currency
   );
@@ -52,18 +52,18 @@ const currencyFormat = (product) => {
           {{ product.title }}
         </router-link>
         <div class="flex gap-[10px] text-body12m text-neutral-60">
-          <div v-if="product.options.gender">
+          <div v-if="product.gender">
             Gene:
             <strong class="font-[700]">
-              {{ product.options.gender }}
+              {{ product.gender }}
             </strong>
           </div>
           <span class="relative -top-[5px] hidden text-[22px] md:inline-block"
             >.</span
           >
-          <div v-if="product.options.age">
+          <div v-if="product.age">
             Age:
-            <strong class="font-[700]">{{ product.options.age }}</strong>
+            <strong class="font-[700]">{{ product.age }}</strong>
           </div>
         </div>
         <div class="text-body16b text-neutral-100 sm:text-body14b">
