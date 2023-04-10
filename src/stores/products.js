@@ -32,9 +32,13 @@ export const useProductStore = defineStore("product", () => {
       };
     });
   });
+  const getProduct = (id) => {
+    return exchangeRateProducts.value.find((product) => product.id === +id);
+  };
 
   return {
     products,
     exchangeRateProducts,
+    getProduct,
   };
 });

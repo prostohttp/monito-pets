@@ -19,7 +19,10 @@ export function flattenObject(obj) {
   function traverse(currentObj, currentKey = "") {
     for (let key in currentObj) {
       const newKey = currentKey ? key : key;
-      if (typeof currentObj[key] === "object") {
+      if (
+        typeof currentObj[key] === "object" &&
+        !Array.isArray(currentObj[key])
+      ) {
         traverse(currentObj[key], newKey);
       } else {
         resultObj[newKey] = currentObj[key];

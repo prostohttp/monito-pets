@@ -7,7 +7,6 @@ export const useFilterStore = defineStore("filter", () => {
   const sortStore = useSortStore();
   const { sortedProducts } = storeToRefs(sortStore);
   // vars
-
   const male = ref(false);
   const female = ref(false);
   const red = ref(false);
@@ -22,37 +21,85 @@ export const useFilterStore = defineStore("filter", () => {
   const small = ref(false);
   const medium = ref(false);
   const large = ref(false);
-  const filters = ref([]);
-  const range = ref({
-    min: {
-      value: min.value,
-    },
-    max: {
-      value: max.value,
-    },
+  const filters = ref({
+    Male: male.value,
+    Female: female.value,
+    Red: red.value,
+    Apricot: apricot.value,
+    Black: black.value,
+    "Black & White": blackAndWhite.value,
+    Silver: silver.value,
+    Tan: tan.value,
+    Small: small.value,
+    White: white.value,
+    Medium: medium.value,
+    Large: large.value,
   });
+  const range = ref({
+    min: min.value,
+    max: max.value,
+  });
+  const filtered = ref([]);
+
   // handlers
-  const addFilterHandler = (f) => {
-    filters.value = f;
-  };
-  const priceRangeHandler = (p) => {
-    range.value = p;
-  };
-  const filteredProducts = computed(() => {
-    if (filters.value.length) {
-      let inc = false;
-      return sortedProducts.value.filter((product) => {
-        for (const value of Object.values(product)) {
-          inc = filters.value.includes(value);
-          if (inc) break;
+  const checkboxHandler = () => {
+    if (Object.values(filters.value).some((val) => val)) {
+      filtered.value = filtered.value.filter((product) => {
+        let inc = false;
+        for (const val of Object.values(product)) {
+          if (val in filters.value && filters.value[val]) {
+            inc = true;
+            break;
+          }
         }
         return inc;
       });
-    } else {
-      return sortedProducts.value;
     }
+  };
+  const rangeHandler = () => {
+    if (Object.values(range.value).some((val) => val)) {
+      const min = +range.value.min;
+      const max = +range.value.max;
+      if (range.value.min && !range.value.max) {
+        filtered.value = filtered.value.filter((product) => {
+          return product.price >= min;
+        });
+      } else if (!range.value.min && range.value.max) {
+        filtered.value = filtered.value.filter(
+          (product) => product.price <= max && product.price >= 1
+        );
+      } else if (range.value.min && range.value.max) {
+        filtered.value = filtered.value.filter(
+          (product) => product.price <= max && product.price >= min
+        );
+      }
+    }
+  };
+  const filteredProducts = computed(() => {
+    filtered.value = sortedProducts.value;
+    checkboxHandler();
+    rangeHandler();
+    return filtered.value;
   });
 
+  const resetFilters = () => {
+    male.value = false;
+    female.value = false;
+    red.value = false;
+    apricot.value = false;
+    black.value = false;
+    blackAndWhite.value = false;
+    silver.value = false;
+    tan.value = false;
+    white.value = false;
+    min.value = "";
+    max.value = "";
+    small.value = false;
+    medium.value = false;
+    large.value = false;
+  };
+
+  // Hooks
   watch(
     [
       male,
@@ -71,54 +118,28 @@ export const useFilterStore = defineStore("filter", () => {
       large,
     ],
     () => {
-      filters.value = [
-        male.value ? "Male" : null,
-        female.value ? "Female" : null,
-        red.value ? "Red" : null,
-        apricot.value ? "Apricot" : null,
-        black.value ? "Black" : null,
-        blackAndWhite.value ? "Black & White" : null,
-        silver.value ? "Silver" : null,
-        tan.value ? "Tan" : null,
-        small.value ? "Small" : null,
-        medium.value ? "Medium" : null,
-        large.value ? "Large" : null,
-      ].filter((el) => el);
-
-      range.value.min.value = min.value;
-      range.value.max.value = max.value;
-      // addFilterHandler(
-      //   [
-      //     male.value ? "Male" : null,
-      //     female.value ? "Female" : null,
-      //     red.value ? "Red" : null,
-      //     apricot.value ? "Apricot" : null,
-      //     black.value ? "Black" : null,
-      //     blackAndWhite.value ? "Black & White" : null,
-      //     silver.value ? "Silver" : null,
-      //     tan.value ? "Tan" : null,
-      //     small.value ? "Small" : null,
-      //     medium.value ? "Medium" : null,
-      //     large.value ? "Large" : null,
-      //   ].filter((el) => el)
-      // );
-      // priceRangeHandler({
-      //   min: {
-      //     value: min.value ? +min.value : null,
-      //   },
-      //   max: {
-      //     value: max.value ? +max.value : null,
-      //   },
-      // });
+      range.value.max = max.value;
+      range.value.min = min.value;
+      filters.value.Male = male.value;
+      filters.value.Female = female.value;
+      filters.value.Red = red.value;
+      filters.value.Apricot = apricot.value;
+      filters.value.Black = black.value;
+      filters.value["Black & White"] = blackAndWhite.value;
+      filters.value.White = white.value;
+      filters.value.Small = small.value;
+      filters.value.Medium = medium.value;
+      filters.value.Large = large.value;
+      filters.value.Tan = tan.value;
+      filters.value.Silver = silver.value;
     }
   );
 
   return {
     filteredProducts,
-    addFilterHandler,
+    filtered,
     filters,
     range,
-    priceRangeHandler,
     male,
     female,
     red,
@@ -133,5 +154,6 @@ export const useFilterStore = defineStore("filter", () => {
     small,
     medium,
     large,
+    resetFilters,
   };
 });

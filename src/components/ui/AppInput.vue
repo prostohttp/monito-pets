@@ -47,7 +47,7 @@ export default {
       class="w-full border border-neutral-40 px-[28px] py-[14px] text-[15px] font-[500] leading-[20px] text-neutral-80 placeholder-neutral-40"
       v-bind="$attrs"
       :value="modelValue"
-      @input="emit('update:model-value', $event.target.value)"
+      @change="emit('update:model-value', $event.target.value)"
     />
     <template v-if="icon">
       <img

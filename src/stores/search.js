@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { useProductStore } from "@/stores/products";
 import { storeToRefs } from "pinia";
 import { useRoute } from "vue-router";

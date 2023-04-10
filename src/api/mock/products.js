@@ -1,24 +1,24 @@
-import pr1 from "~/images/product-1.jpg";
-import pr2 from "~/images/product-2.jpg";
-import pr3 from "~/images/product-3.jpg";
-import pr4 from "~/images/product-4.jpg";
-import pr5 from "~/images/product-5.jpg";
-import pr6 from "~/images/product-6.jpg";
-import pr7 from "~/images/product-7.jpg";
-import pr8 from "~/images/product-8.jpg";
-import pr9 from "~/images/product-9.jpg";
-import pr10 from "~/images/product-10.jpg";
-import pr11 from "~/images/product-11.jpg";
-import pr12 from "~/images/product-12.jpg";
-import pr13 from "~/images/product-13.jpg";
-import pr14 from "~/images/product-14.jpg";
-import pr15 from "~/images/product-15.jpg";
-import pr16 from "~/images/product-16.jpg";
+import pr1 from "~/images/product/1.jpg";
+import pr2 from "~/images/product/2.jpg";
+import pr3 from "~/images/product/3.jpg";
+import pr4 from "~/images/product/4.jpg";
+import pr5 from "~/images/product/5.jpg";
+import pr6 from "~/images/product/6.jpg";
+import pr7 from "~/images/product/7.jpg";
+import pr8 from "~/images/product/8.jpg";
+import pr9 from "~/images/product/9.jpg";
+import pr10 from "~/images/product/10.jpg";
+import pr11 from "~/images/product/11.jpg";
+import pr12 from "~/images/product/12.jpg";
+import pr13 from "~/images/product/13.jpg";
+import pr14 from "~/images/product/14.jpg";
+import pr15 from "~/images/product/15.jpg";
+import pr16 from "~/images/product/16.jpg";
 
 export const productsList = [
   {
     id: 1,
-    sale: false,
+    sale: "Free Cat Food",
     image: pr1,
     title: "MO231 - Pomeranian White",
     categoryId: 1,
@@ -28,11 +28,21 @@ export const productsList = [
       breed: "Medium",
       age: "1 year",
       price: 100,
+      sku: "1000078",
+      images: [pr1, pr2, pr3, pr4, pr5, pr6, pr7, pr8, pr9, pr10],
+      Vaccinated: "Yes",
+      Dewormed: "Yes",
+      Cert: "Yes (MKA)",
+      Microchip: "Yes",
+      Location: "Vietnam",
+      "Published Date": "12-Oct-2022",
+      "Additional Information":
+        "Pure breed Shih Tzu.Good body structure.  With MKA cert and Microchip.  Father from champion lineage.",
     },
   },
   {
     id: 2,
-    sale: false,
+    sale: "Free Cat Food",
     image: pr2,
     title: "MO502 - Poodle Tiny Yellow",
     categoryId: 1,
@@ -42,20 +52,40 @@ export const productsList = [
       breed: "Medium",
       age: "02 months",
       price: 200,
+      sku: "1000078",
+      images: [pr1, pr2, pr3, pr4, pr5, pr6, pr7, pr8, pr9, pr10],
+      Vaccinated: "Yes",
+      Dewormed: "Yes",
+      Cert: "Yes (MKA)",
+      Microchip: "Yes",
+      Location: "Vietnam",
+      "Published Date": "12-Oct-2022",
+      "Additional Information":
+        "Pure breed Shih Tzu.Good body structure.  With MKA cert and Microchip.  Father from champion lineage.",
     },
   },
   {
     id: 3,
-    sale: false,
+    sale: "Free Cat Food",
     image: pr3,
     title: "MO102 - Poodle Tiny Sepia",
-    categoryId: 1,
+    categoryId: 2,
     options: {
       gender: "Male",
       color: "White",
       breed: "Large",
       age: "02 months",
       price: 3665,
+      sku: "1000078",
+      images: [pr1, pr2, pr3, pr4, pr5, pr6, pr7, pr8, pr9, pr10],
+      Vaccinated: "Yes",
+      Dewormed: "Yes",
+      Cert: "Yes (MKA)",
+      Microchip: "Yes",
+      Location: "Vietnam",
+      "Published Date": "12-Oct-2022",
+      "Additional Information":
+        "Pure breed Shih Tzu.Good body structure.  With MKA cert and Microchip.  Father from champion lineage.",
     },
   },
   {
@@ -70,6 +100,16 @@ export const productsList = [
       breed: "Large",
       age: "02 months",
       price: 5653,
+      sku: "1000078",
+      images: [pr1, pr2, pr3, pr4, pr5, pr6, pr7, pr8, pr9, pr10],
+      Vaccinated: "Yes",
+      Dewormed: "Yes",
+      Cert: "Yes (MKA)",
+      Microchip: "Yes",
+      Location: "Vietnam",
+      "Published Date": "12-Oct-2022",
+      "Additional Information":
+        "Pure breed Shih Tzu.Good body structure.  With MKA cert and Microchip.  Father from champion lineage.",
     },
   },
   {
@@ -84,6 +124,16 @@ export const productsList = [
       breed: "Large",
       age: "2 year",
       price: 65653,
+      sku: "1000078",
+      images: [pr1, pr2, pr3, pr4, pr5, pr6, pr7, pr8, pr9, pr10],
+      Vaccinated: "Yes",
+      Dewormed: "Yes",
+      Cert: "Yes (MKA)",
+      Microchip: "Yes",
+      Location: "Vietnam",
+      "Published Date": "12-Oct-2022",
+      "Additional Information":
+        "Pure breed Shih Tzu.Good body structure.  With MKA cert and Microchip.  Father from champion lineage.",
     },
   },
   {
@@ -98,6 +148,16 @@ export const productsList = [
       breed: "Large",
       age: "04 months",
       price: 43434,
+      sku: "1000078",
+      images: [pr1, pr2, pr3, pr4, pr5, pr6, pr7, pr8, pr9, pr10],
+      Vaccinated: "Yes",
+      Dewormed: "Yes",
+      Cert: "Yes (MKA)",
+      Microchip: "Yes",
+      Location: "Vietnam",
+      "Published Date": "12-Oct-2022",
+      "Additional Information":
+        "Pure breed Shih Tzu.Good body structure.  With MKA cert and Microchip.  Father from champion lineage.",
     },
   },
   {
@@ -112,6 +172,16 @@ export const productsList = [
       breed: "Medium",
       age: "02 months",
       price: 3323,
+      sku: "1000078",
+      images: [pr1, pr2, pr3, pr4, pr5, pr6, pr7, pr8, pr9, pr10],
+      Vaccinated: "Yes",
+      Dewormed: "Yes",
+      Cert: "Yes (MKA)",
+      Microchip: "Yes",
+      Location: "Vietnam",
+      "Published Date": "12-Oct-2022",
+      "Additional Information":
+        "Pure breed Shih Tzu.Good body structure.  With MKA cert and Microchip.  Father from champion lineage.",
     },
   },
   {
@@ -126,6 +196,16 @@ export const productsList = [
       breed: "Large",
       age: "03 months",
       price: 3333,
+      sku: "1000078",
+      images: [pr1, pr2, pr3, pr4, pr5, pr6, pr7, pr8, pr9, pr10],
+      Vaccinated: "Yes",
+      Dewormed: "Yes",
+      Cert: "Yes (MKA)",
+      Microchip: "Yes",
+      Location: "Vietnam",
+      "Published Date": "12-Oct-2022",
+      "Additional Information":
+        "Pure breed Shih Tzu.Good body structure.  With MKA cert and Microchip.  Father from champion lineage.",
     },
   },
   {
@@ -140,6 +220,16 @@ export const productsList = [
       breed: "Small",
       age: "07 months",
       price: 326,
+      sku: "1000078",
+      images: [pr1, pr2, pr3, pr4, pr5, pr6, pr7, pr8, pr9, pr10],
+      Vaccinated: "Yes",
+      Dewormed: "Yes",
+      Cert: "Yes (MKA)",
+      Microchip: "Yes",
+      Location: "Vietnam",
+      "Published Date": "12-Oct-2022",
+      "Additional Information":
+        "Pure breed Shih Tzu.Good body structure.  With MKA cert and Microchip.  Father from champion lineage.",
     },
   },
   {
@@ -154,6 +244,16 @@ export const productsList = [
       breed: "Large",
       age: "02 months",
       price: 7865,
+      sku: "1000078",
+      images: [pr1, pr2, pr3, pr4, pr5, pr6, pr7, pr8, pr9, pr10],
+      Vaccinated: "Yes",
+      Dewormed: "Yes",
+      Cert: "Yes (MKA)",
+      Microchip: "Yes",
+      Location: "Vietnam",
+      "Published Date": "12-Oct-2022",
+      "Additional Information":
+        "Pure breed Shih Tzu.Good body structure.  With MKA cert and Microchip.  Father from champion lineage.",
     },
   },
   {
@@ -168,6 +268,16 @@ export const productsList = [
       breed: "Small",
       age: "02 months",
       price: 1007,
+      sku: "1000078",
+      images: [pr1, pr2, pr3, pr4, pr5, pr6, pr7, pr8, pr9, pr10],
+      Vaccinated: "Yes",
+      Dewormed: "Yes",
+      Cert: "Yes (MKA)",
+      Microchip: "Yes",
+      Location: "Vietnam",
+      "Published Date": "12-Oct-2022",
+      "Additional Information":
+        "Pure breed Shih Tzu.Good body structure.  With MKA cert and Microchip.  Father from champion lineage.",
     },
   },
   {
@@ -182,6 +292,16 @@ export const productsList = [
       breed: "Large",
       age: "02 months",
       price: 9765,
+      sku: "1000078",
+      images: [pr1, pr2, pr3, pr4, pr5, pr6, pr7, pr8, pr9, pr10],
+      Vaccinated: "Yes",
+      Dewormed: "Yes",
+      Cert: "Yes (MKA)",
+      Microchip: "Yes",
+      Location: "Vietnam",
+      "Published Date": "12-Oct-2022",
+      "Additional Information":
+        "Pure breed Shih Tzu.Good body structure.  With MKA cert and Microchip.  Father from champion lineage.",
     },
   },
   {
@@ -196,6 +316,16 @@ export const productsList = [
       breed: "Small",
       age: "02 months",
       price: 4578,
+      sku: "1000078",
+      images: [pr1, pr2, pr3, pr4, pr5, pr6, pr7, pr8, pr9, pr10],
+      Vaccinated: "Yes",
+      Dewormed: "Yes",
+      Cert: "Yes (MKA)",
+      Microchip: "Yes",
+      Location: "Vietnam",
+      "Published Date": "12-Oct-2022",
+      "Additional Information":
+        "Pure breed Shih Tzu.Good body structure.  With MKA cert and Microchip.  Father from champion lineage.",
     },
   },
   {
@@ -210,6 +340,16 @@ export const productsList = [
       breed: "Large",
       age: "02 months",
       price: 656,
+      sku: "1000078",
+      images: [pr1, pr2, pr3, pr4, pr5, pr6, pr7, pr8, pr9, pr10],
+      Vaccinated: "Yes",
+      Dewormed: "Yes",
+      Cert: "Yes (MKA)",
+      Microchip: "Yes",
+      Location: "Vietnam",
+      "Published Date": "12-Oct-2022",
+      "Additional Information":
+        "Pure breed Shih Tzu.Good body structure.  With MKA cert and Microchip.  Father from champion lineage.",
     },
   },
   {
@@ -224,6 +364,16 @@ export const productsList = [
       breed: "Small",
       age: "02 months",
       price: 6786,
+      sku: "1000078",
+      images: [pr1, pr2, pr3, pr4, pr5, pr6, pr7, pr8, pr9, pr10],
+      Vaccinated: "Yes",
+      Dewormed: "Yes",
+      Cert: "Yes (MKA)",
+      Microchip: "Yes",
+      Location: "Vietnam",
+      "Published Date": "12-Oct-2022",
+      "Additional Information":
+        "Pure breed Shih Tzu.Good body structure.  With MKA cert and Microchip.  Father from champion lineage.",
     },
   },
   {
@@ -238,6 +388,16 @@ export const productsList = [
       breed: "Large",
       age: "02 months",
       price: 1000,
+      sku: "1000078",
+      images: [pr1, pr2, pr3, pr4, pr5, pr6, pr7, pr8, pr9, pr10],
+      Vaccinated: "Yes",
+      Dewormed: "Yes",
+      Cert: "Yes (MKA)",
+      Microchip: "Yes",
+      Location: "Vietnam",
+      "Published Date": "12-Oct-2022",
+      "Additional Information":
+        "Pure breed Shih Tzu.Good body structure.  With MKA cert and Microchip.  Father from champion lineage.",
     },
   },
 ];
