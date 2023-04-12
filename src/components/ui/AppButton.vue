@@ -1,5 +1,5 @@
 <script setup>
-const { leftIcon, rightIcon, centerIcon } = defineProps({
+const { leftIcon, rightIcon, centerIcon, centerInvertIcon } = defineProps({
   leftIcon: {
     type: String,
   },
@@ -23,9 +23,9 @@ const { leftIcon, rightIcon, centerIcon } = defineProps({
 
 <template>
   <button
-    class="flex items-center justify-center gap-[8px] rounded-[57px] text-[16px] text-body16m leading-[24px] transition-colors"
+    class="flex items-center justify-center gap-[8px] rounded-[57px] text-[16px] leading-[24px] transition-colors"
     :class="{
-      'px-[30px] pb-[8px] pt-[10px] ': !centerIcon,
+      'px-[30px] py-[10px] ': !centerIcon,
       'px-[14px] py-[14px]': centerIcon,
     }"
   >
@@ -33,7 +33,7 @@ const { leftIcon, rightIcon, centerIcon } = defineProps({
       <img
         :src="leftIcon"
         alt=""
-        class="h-[15px] w-[15px]"
+        class="h-[20px] w-[20px]"
         :class="{ 'brightness-0 invert': leftInvertIcon }"
       />
     </template>

@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import ru from "~/icons/ru.svg";
 import eu from "~/icons/eu.svg";
 import vn from "~/icons/vn.svg";
@@ -11,25 +11,25 @@ export const useCurrencyStore = defineStore("currency", () => {
       code: "ru",
       currency: "RUB",
       flag: ru,
-      well: 77,
+      well: 1,
     },
     {
       code: "eu",
       currency: "EUR",
       flag: eu,
-      well: 0.92,
+      well: 0.011145,
     },
     {
       code: "us",
       currency: "USD",
       flag: us,
-      well: 1,
+      well: 0.012168,
     },
     {
       code: "vn",
       currency: "VND",
       flag: vn,
-      well: 90,
+      well: 285.47,
     },
   ]);
 
@@ -38,12 +38,17 @@ export const useCurrencyStore = defineStore("currency", () => {
       ? currencyList.value[+window.localStorage.getItem("currency")]
       : currencyList.value[0]
   );
-
   const setCurrentCurrency = (index) => {
     currentCurrency.value = currencyList.value[index];
   };
+  const currentRate = computed(() => {
+    return currencyList.value.find(
+      (el) => el.code === currentCurrency.value.code
+    )["well"];
+  });
 
   return {
+    currentRate,
     currentCurrency,
     currencyList,
     setCurrentCurrency,

@@ -1,4 +1,4 @@
-export function flattenArray(arr) {
+export const flattenArray = (arr) => {
   let resultArr = [];
   for (let i = 0; i < arr.length; i++) {
     if (typeof arr[i] === "object" && !Array.isArray(arr[i])) {
@@ -12,9 +12,9 @@ export function flattenArray(arr) {
     }
   }
   return resultArr;
-}
+};
 
-export function flattenObject(obj) {
+export const flattenObject = (obj) => {
   const resultObj = {};
   function traverse(currentObj, currentKey = "") {
     for (let key in currentObj) {
@@ -31,4 +31,18 @@ export function flattenObject(obj) {
   }
   traverse(obj);
   return resultObj;
-}
+};
+
+export const currencyFormat = (product, code, currency) => {
+  let locale;
+  if (code === "ru") {
+    locale = "ru-RU";
+  } else if (code === "eu") {
+    locale = "en-150";
+  } else if (code === "us") {
+    locale = "en-US";
+  } else if (code === "vn") {
+    locale = "en-US";
+  }
+  return new Intl.NumberFormat(locale).format(product.price) + " " + currency;
+};

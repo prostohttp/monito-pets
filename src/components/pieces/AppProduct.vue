@@ -2,6 +2,10 @@
 import saleIcon from "~/icons/gift.svg";
 import { useCurrencyStore } from "@/stores/currency";
 import { storeToRefs } from "pinia";
+import { currencyFormat } from "@/helpers/functions";
+
+const currencyStore = useCurrencyStore();
+const { currentCurrency } = storeToRefs(currencyStore);
 
 const { product } = defineProps({
   product: {
@@ -9,27 +13,6 @@ const { product } = defineProps({
     required: true,
   },
 });
-
-const currencyStore = useCurrencyStore();
-const { currentCurrency } = storeToRefs(currencyStore);
-const currencyFormat = (product) => {
-  const code = currentCurrency.value.code;
-  let locale;
-  if (code === "ru") {
-    locale = "ru-RU";
-  } else if (code === "eu") {
-    locale = "en-150";
-  } else if (code === "us") {
-    locale = "en-US";
-  } else if (code === "vn") {
-    locale = "en-US";
-  }
-  return (
-    new Intl.NumberFormat(locale).format(product.price) +
-    " " +
-    currentCurrency.value.currency
-  );
-};
 </script>
 
 <template>
@@ -67,7 +50,13 @@ const currencyFormat = (product) => {
           </div>
         </div>
         <div class="text-body16b text-neutral-100 sm:text-body14b">
-          {{ currencyFormat(product) }}
+          {{
+            currencyFormat(
+              product,
+              currentCurrency.code,
+              currentCurrency.currency
+            )
+          }}
         </div>
         <div
           v-if="product.sale"

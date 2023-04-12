@@ -5,20 +5,10 @@ import { productsList } from "@/api/mock/products";
 import { flattenObject } from "@/helpers/functions";
 
 export const useProductStore = defineStore("product", () => {
-  const exchangeRate = [
-    { code: "ru", rate: 1 },
-    { code: "eu", rate: 0.0017 },
-    { code: "us", rate: 0.0128 },
-    { code: "vn", rate: 294.87 },
-  ];
   const currencyStore = useCurrencyStore();
-  const { currentCurrency } = storeToRefs(currencyStore);
+  const { currentRate } = storeToRefs(currencyStore);
   const initialProducts = ref(productsList);
-  const currentRate = computed(() => {
-    return exchangeRate.find((el) => el.code === currentCurrency.value.code)[
-      "rate"
-    ];
-  });
+  const product = ref({});
 
   const products = computed(() => {
     return initialProducts.value.map((product) => flattenObject(product));
@@ -32,13 +22,16 @@ export const useProductStore = defineStore("product", () => {
       };
     });
   });
-  const getProduct = (id) => {
-    return exchangeRateProducts.value.find((product) => product.id === +id);
+  const setProduct = (id) => {
+    product.value = exchangeRateProducts.value.find(
+      (product) => product.id === +id
+    );
   };
 
   return {
     products,
+    product,
     exchangeRateProducts,
-    getProduct,
+    setProduct,
   };
 });

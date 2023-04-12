@@ -59,7 +59,11 @@ const isOpen = ref(false);
               </div>
             </div>
             <div class="flex basis-6/12 justify-end lg:hidden">
-              <img :src="mobileImage" alt="banner image" />
+              <img
+                :src="mobileImage"
+                alt="banner image"
+                class="h-auto w-full"
+              />
             </div>
             <div class="hidden basis-6/12 lg:flex xl:basis-8/12">
               <img :src="desktopImage" alt="banner image" />
