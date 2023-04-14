@@ -1,6 +1,6 @@
 # Monito Pets
 ## Vue 3, Vue Router, Pinia
-### https://magenta-biscuit-bce0fe.netlify.app/
+### monito-pets-vue3.netlify.app
 
 ### Страницы
 # 
