@@ -27,8 +27,14 @@ const layout = computed(() => {
 });
 </script>
 
-<template v-else>
+<template v-cloak>
   <component :is="layout">
     <router-view />
   </component>
 </template>
+
+<style scoped>
+[v-cloak] {
+  display: none;
+}
+</style>
