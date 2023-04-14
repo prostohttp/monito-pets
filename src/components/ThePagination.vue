@@ -1,44 +1,64 @@
 <script setup>
+import { toRef } from "vue";
 import arrowLeft from "~/icons/arrow-left.svg";
 import arrowRight from "~/icons/arrow-right.svg";
-import { ref } from "vue";
 
-const pages = ref([
-  {
-    title: "1",
-    active: true,
+// Stores
+
+// Vars
+const props = defineProps({
+  perPage: {
+    type: Number,
+    required: false,
+    default: 6,
   },
-  {
-    title: "2",
-    active: false,
+  activePage: {
+    type: Number,
+    required: true,
   },
-  {
-    title: "3",
-    active: false,
+  pageCount: {
+    type: Number,
+    required: true,
   },
-  {
-    title: "...",
-    active: false,
-  },
-  {
-    title: "28",
-    active: false,
-  },
-]);
+});
+const emit = defineEmits(["set-active-page"]);
+const activePage = toRef(props, "activePage");
+
+// Handlers
+const backHandler = () => {
+  if (activePage.value > 1) {
+    emit("set-active-page", activePage.value - 1);
+  }
+};
+const forwardHandler = () => {
+  if (activePage.value < props.pageCount) {
+    emit("set-active-page", activePage.value + 1);
+  }
+};
+
+// Hooks
 </script>
 
 <template>
-  <div class="flex items-center justify-center gap-[15px]">
-    <button><img :src="arrowLeft" alt="back" class="w-[30px]" /></button>
+  <div
+    class="flex items-center justify-center gap-[15px]"
+    v-if="props.pageCount > 1"
+  >
+    <button @click="backHandler">
+      <img :src="arrowLeft" alt="back" class="w-[30px]" />
+    </button>
     <ul class="flex gap-[15px] text-[18px] font-bold leading-[24px]">
       <li
-        v-for="page in pages"
+        v-for="index in props.pageCount"
         class="flex h-[34px] w-[34px] items-center justify-center rounded-[8px] hover:cursor-pointer hover:bg-blue-dark hover:text-neutral-0"
-        :class="{ 'bg-blue-dark text-neutral-0': page.active }"
+        :class="{ 'bg-blue-dark text-neutral-0': index === activePage }"
+        @click="emit('set-active-page', index)"
       >
-        {{ page.title }}
+        {{ index }}
       </li>
     </ul>
-    <button><img :src="arrowRight" alt="forward" class="w-[30px]" /></button>
+    <button @click="forwardHandler">
+      <img :src="arrowRight" alt="forward" class="w-[30px]" />
+    </button>
   </div>
 </template>

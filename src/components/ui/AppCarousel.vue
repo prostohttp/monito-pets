@@ -37,7 +37,7 @@ const prevImageHandler = () => {
 <template>
   <div class="overflow-x-auto">
     <ul
-      class="flex touch-pan-x snap-x gap-[12px] pb-[20px] scrollbar-hide"
+      class="flex touch-none touch-pan-x gap-[12px] pb-[20px] scrollbar-hide"
       :style="{ width: width.desktop + 'px' }"
     >
       <li

@@ -49,12 +49,7 @@ const { categories } = storeToRefs(categoryStore);
         </li>
       </template>
     </ul>
-    <router-link
-      to="/category/adopt"
-      class="basis-4/12"
-      @click="emit('closeMenu')"
-    >
-      <img :src="banner" alt="banner" />
-    </router-link>
+
+    <span><img :src="banner" alt="banner" /></span>
   </div>
 </template>

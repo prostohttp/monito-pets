@@ -8,6 +8,7 @@ const {} = defineProps({
   },
   last: {
     type: Number,
+    default: 100,
   },
 });
 const articlesStore = useArticlesStore();

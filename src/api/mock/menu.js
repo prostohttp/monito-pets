@@ -63,7 +63,20 @@ export const menuItems = [
     to: "/contact",
   },
 ];
-
+export const footerMenu = [
+  {
+    title: "Home",
+    to: "/",
+  },
+  {
+    title: "About",
+    to: "/information/1",
+  },
+  {
+    title: "Contact",
+    to: "/contact",
+  },
+];
 export const socialItems = [
   {
     icon: facebook,
