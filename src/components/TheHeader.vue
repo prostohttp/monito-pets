@@ -16,21 +16,22 @@ import up from "~/icons/up.svg";
 import AppSubMenu from "@/components/pieces/AppSubMenu.vue";
 import { useCategoryStore } from "@/stores/category";
 import { useRouter } from "vue-router";
+import { Form as VeeForm } from "vee-validate";
 // vars
 const menuIsVisible = ref(false);
 const searchIsVisible = ref(false);
 const isOpen = ref(false);
 const subMenu = ref(false);
 const router = useRouter();
-// const route = useRoute();
-const search = ref(localStorage.getItem("search") || "");
+const initialSearch = {
+  search: localStorage.getItem("search") || "",
+};
 // Store
 const currencyStore = useCurrencyStore();
 const categoryStore = useCategoryStore();
 
 const { currentCurrency } = storeToRefs(currencyStore);
 const { setCurrentCurrency, currencyList } = currencyStore;
-// const { resetFilters } = filterStore;
 const { categories } = categoryStore;
 // methods
 const searchHandler = () => {
@@ -48,10 +49,14 @@ const currencyToggleHandler = (index) => {
   setCurrentCurrency(index);
   window.localStorage.setItem("currency", index);
 };
-const searchSubmitHandler = () => {
-  const val = search.value;
-  localStorage.setItem("search", search.value);
-  router.push({ name: "search", query: { s: val } });
+const searchSubmitHandler = (values, { resetForm }) => {
+  localStorage.setItem("search", values.search);
+  resetForm({
+    values: {
+      search: localStorage.getItem("search"),
+    },
+  });
+  router.push({ name: "search", query: { s: values.search } });
 };
 const clickOutside = () => {
   if (isOpen.value) {
@@ -115,15 +120,19 @@ const clickOutsideMainMenu = () => {
           </ul>
         </nav>
         <div class="order-3 hidden w-[280px] min-w-fit lg:flex">
-          <form @submit.prevent="searchSubmitHandler" class="w-full">
+          <VeeForm
+            @submit="searchSubmitHandler"
+            class="w-full"
+            :initial-values="initialSearch"
+          >
             <AppInput
-              v-model.trim="search"
+              name="search"
               placeholder="Search something here!"
               :relative="true"
               :left-icon="searchIcon"
               class="rounded-[46px] border-transparent bg-neutral-0 pl-[48px]"
             />
-          </form>
+          </VeeForm>
         </div>
         <nav class="lg:hidden">
           <img
@@ -196,13 +205,16 @@ const clickOutsideMainMenu = () => {
           />
           <transition name="fade">
             <div v-show="searchIsVisible">
-              <form @submit.prevent="searchSubmitHandler">
+              <VeeForm
+                @submit="searchSubmitHandler"
+                :initial-values="initialSearch"
+              >
                 <AppInput
-                  v-model.trim="search"
+                  name="search"
                   placeholder="Search something here!"
                   class="absolute right-0 top-[58px] w-full rounded-none border-neutral-10 lg:static lg:block"
                 />
-              </form>
+              </VeeForm>
             </div>
           </transition>
         </div>

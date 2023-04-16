@@ -55,6 +55,8 @@ const prevImageHandler = () => {
   </div>
   <teleport to="body">
     <AppImageModal
+      :length="images.length - 1"
+      :activeImageId="activeImageId"
       :is-open="isImageOpen"
       @close-handler="isImageOpen = false"
       @next-handler="nextImageHandler"

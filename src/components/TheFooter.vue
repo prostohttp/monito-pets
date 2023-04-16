@@ -31,6 +31,7 @@ const subscribeHandler = () => {
             v-model.trim="subscribe"
             placeholder="Enter your Email"
             class="w-full rounded-[8px]"
+            field-type="input"
           />
           <AppButton
             class="w-full rounded-[8px] bg-blue-dark px-[30px] py-[10px] text-white hover:bg-blue-dark/[90%] md:w-[163px] md:min-w-fit"

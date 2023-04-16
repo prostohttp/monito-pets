@@ -49,8 +49,8 @@ watch(route, () => {
           :key="thumbs[activeThumb]"
         >
           <a
-            class="absolute left-[16px] top-1/2 flex h-[42px] w-[42px] -translate-y-1/2 cursor-pointer items-center justify-center rounded-full"
-            :class="activeThumb === 0 ? 'bg-neutral-20' : 'bg-blue-dark'"
+            v-show="activeThumb !== 0"
+            class="absolute left-[16px] top-1/2 flex h-[42px] w-[42px] -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-blue-dark"
             @click="backHandler"
           >
             <img :src="backIcon" alt="back" />
@@ -63,10 +63,8 @@ watch(route, () => {
           />
 
           <a
-            class="absolute right-[16px] top-1/2 flex h-[42px] w-[42px] -translate-y-1/2 cursor-pointer items-center justify-center rounded-full"
-            :class="
-              activeThumb < thumbs.length - 1 ? 'bg-blue-dark' : 'bg-neutral-20'
-            "
+            v-show="activeThumb < thumbs.length - 1"
+            class="absolute right-[16px] top-1/2 flex h-[42px] w-[42px] -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-blue-dark"
             @click="forwardHandler"
           >
             <img

@@ -1,103 +1,94 @@
 <script setup>
+import { useField } from "vee-validate";
+import * as Yup from "yup";
+import "yup-phone-lite";
+import AppDynamicForm from "@/components/ui/AppDynamicForm.vue";
 import { ref } from "vue";
-import AppCheckbox from "@/components/ui/AppCheckbox.vue";
-import Input from "@/components/ui/AppInput.vue";
-import eye from "~/icons/eye.svg";
-import left from "~/icons/play-light.svg";
-import Radio from "@/components/ui/AppRadio.vue";
-import AppDropdown from "@/components/ui/AppDropdown.vue";
-import Button from "@/components/ui/AppButton.vue";
-import Modal from "@/components/ui/AppModal.vue";
 
-const checkboxList = [
-  { value: "Понедельник" },
-  { value: "Вторник", disabled: true },
-  {},
-];
-const radioList = [
-  { value: "Понедельник" },
-  { value: "Воскресенье", disabled: true },
-  {},
-];
-const dropdownList = [
-  { value: "Выберите вариант", disabled: true },
-  { value: "Понедельник" },
-  { value: "Вторник" },
-  { value: "Среда" },
-  { value: "Четверг" },
-  { value: "Пятница" },
-  { value: "Суббота" },
-  { value: "Воскресенье" },
-];
-const click = () => window.open("https://vk.com", "_blank");
-const isOpen = ref(false);
+// Handlers
+const submitFormHandler = (values, { resetForm }) => {
+  resetForm({
+    values: {
+      name: "Mike Morozov",
+    },
+  });
+};
+
+// Vars
+// const name = ref("");
+// const { errorMessage, value, meta } = useField(
+//   name,
+//   Yup.string().required("обязательное поле").min(8, "Не менее 8 символов")
+// );
+const initialValues = {
+  name: "Mikele Corleone",
+};
+
+const formSchema = {
+  fields: [
+    {
+      placeholder: "Your Name *",
+      name: "name",
+      as: "input",
+      type: "text",
+      rules: Yup.string().min(3).required().label("Your Name"),
+    },
+    {
+      placeholder: "Your Email *",
+      name: "email",
+      as: "input",
+      type: "email",
+      rules: Yup.string().email().required().label("Your Email"),
+    },
+    {
+      placeholder: "Your Phone *",
+      name: "phone",
+      as: "input",
+      type: "tel",
+      rules: Yup.string()
+        .phone("RU", "Please enter a valid phone number")
+        .required("A phone number is required")
+        .label("Your Phone"),
+    },
+    {
+      placeholder: "",
+      name: "date",
+      as: "input",
+      type: "date",
+      rules: Yup.string().required().label("Date"),
+    },
+    {
+      placeholder: "Your Message *",
+      name: "message",
+      as: "textarea",
+      type: "",
+      rules: Yup.string().min(10).max(300).required().label("Message"),
+      classes: "h-[100px]",
+    },
+  ],
+};
 </script>
 
 <template>
-  <main class="mx-auto max-w-1180">
-    <h1></h1>
-    <h6 class="text-center text-head36m">Elements</h6>
-    <AppCheckbox
-      v-for="input in checkboxList"
-      :value="input.value"
-      :disabled="input.disabled"
+  <main class="mx-auto max-w-1180 py-[100px]">
+    <AppDynamicForm
+      :inital-values="initialValues"
+      :schema="formSchema"
+      :submit-handler="submitFormHandler"
+      submit-text="Submit"
+      class="m-auto max-w-[500px]"
     />
 
-    <Input placeholder="Your name*" label="Name*" :icon="eye" class="" />
-
-    <h6>Radio</h6>
-    <Radio :list="radioList"></Radio>
-
-    <h6>Dropdown menu</h6>
-    <AppDropdown :list="dropdownList"></AppDropdown>
-
-    <h6>Buttons</h6>
-    <Button class="bg-blue-dark text-white">Click here</Button>
-    <Button :left-icon="left" class="bg-blue-dark text-white"
-      >Click here
-    </Button>
-    <Button :right-icon="left" class="bg-sea text-white">Click here</Button>
-    <Button :right-icon="left" :left-icon="left" class="bg-sea text-white"
-      ><a href="#">Click here</a></Button
-    >
-    <Button :center-icon="left" class="bg-sea" @click="click"></Button>
-
-    <h6>Modal window</h6>
-    <Button
-      :right-icon="left"
-      class="bg-sea text-white"
-      @click="isOpen = !isOpen"
-      >Open modal
-    </Button>
-    <teleport to="body">
-      <transition name="fade">
-        <div v-if="isOpen">
-          <Modal
-            :isOpen="isOpen"
-            @close-handler="isOpen = !isOpen"
-            :overflow="true"
-          >
-            <h6 class="mt-0">Checkbox</h6>
-            <AppCheckbox
-              v-for="input in dropdownList"
-              :value="input.value"
-              :disabled="input.disabled"
-            ></AppCheckbox>
-          </Modal>
-        </div>
-      </transition>
-    </teleport>
+    <!--    <div>-->
+    <!--      <input-->
+    <!--        v-model="value"-->
+    <!--        type="text"-->
+    <!--        :class="{-->
+    <!--          'bg-neutral-60 text-neutral-0 transition-all': errorMessage,-->
+    <!--          'rounded-[10px] border-[green]': !errorMessage && meta.dirty,-->
+    <!--        }"-->
+    <!--      />-->
+    <!--      <span>{{ errorMessage }} {{ meta }}</span>-->
+    <!--    </div>-->
   </main>
 </template>
-
-<style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>

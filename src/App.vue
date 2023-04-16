@@ -7,6 +7,7 @@ import CategoryPage from "@/layouts/CategoryPage.vue";
 import ProductPage from "@/layouts/ProductPage.vue";
 import CartPage from "@/layouts/CartPage.vue";
 import AccountPage from "@/layouts/AccountPage.vue";
+import BlankPage from "@/layouts/BlankPage.vue";
 
 const layouts = [
   HomePage,
@@ -15,6 +16,7 @@ const layouts = [
   CategoryPage,
   AccountPage,
   ProductPage,
+  BlankPage,
 ];
 
 const layoutRef = shallowRef(DefaultPage);

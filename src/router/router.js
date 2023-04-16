@@ -139,7 +139,7 @@ const router = createRouter({
       component: () => import("@/views/Elements.vue"),
       name: "elements",
       meta: {
-        layout: "DefaultPage",
+        layout: "BlankPage",
         title: "Elements",
       },
     },

@@ -14,6 +14,14 @@ const { isOpen, overflow } = defineProps({
     type: Boolean,
     default: false,
   },
+  activeImageId: {
+    type: Number,
+    required: true,
+  },
+  length: {
+    type: Number,
+    required: true,
+  },
 });
 const emit = defineEmits(["closeHandler", "nextHandler", "prevHandler"]);
 
@@ -40,12 +48,14 @@ onUnmounted(() => {
 <template>
   <div v-if="isOpen" class="absolute h-screen w-screen">
     <img
+      v-show="activeImageId > 0"
       :src="prevIcon"
       alt="prev"
       class="fixed left-0 top-1/2 z-[1002] h-[30px] w-[30px] cursor-pointer rounded-full sm:left-[16px]"
       @click="emit('prevHandler')"
     />
     <img
+      v-show="activeImageId < length"
       :src="nextIcon"
       alt="next"
       class="fixed right-0 top-1/2 z-[1002] h-[30px] w-[30px] cursor-pointer rounded-full sm:right-[16px]"

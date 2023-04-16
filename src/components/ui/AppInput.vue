@@ -1,22 +1,36 @@
 <script setup>
-import { v4 as uuidv4 } from "uuid";
+import { useField } from "vee-validate";
 
-const { placeholder, label, icon, leftIcon, modelValue, relative } =
+const { label, icon, leftIcon, relative, rules, type, tagName, name } =
   defineProps({
-    placeholder: String,
     label: String,
     icon: String,
     leftIcon: String,
-    modelValue: {
-      type: String,
-    },
     relative: {
       type: Boolean,
     },
+    tagName: {
+      type: String,
+      required: false,
+      default: "input",
+    },
+    name: {
+      type: String,
+      required: false,
+      default: "default",
+    },
+    rules: {
+      type: Object,
+      required: false,
+    },
+    type: {
+      type: String,
+      required: false,
+      default: "text",
+    },
   });
-const emit = defineEmits(["update:model-value"]);
 
-const id = uuidv4();
+const { errorMessage, value, meta } = useField(name, rules);
 </script>
 
 <script>
@@ -28,7 +42,7 @@ export default {
 <template>
   <template v-if="label">
     <label
-      :for="id"
+      :for="name"
       class="mb-[10px] block w-full text-[15px] font-[500] text-neutral-80"
       >{{ label }}
     </label>
@@ -41,19 +55,27 @@ export default {
         class="absolute left-[14px] top-1/2 -translate-y-1/2 cursor-pointer"
       />
     </template>
-    <input
-      :id="label ? id : null"
-      :placeholder="placeholder"
+    <component
+      :name="name"
+      :is="tagName"
+      :id="name"
+      :value="value"
+      @input="value = $event.target.value"
+      :type="type"
       class="w-full border border-neutral-40 px-[28px] py-[14px] text-[15px] font-[500] leading-[20px] text-neutral-80 placeholder-neutral-40"
       v-bind="$attrs"
-      :value="modelValue"
-      @change="emit('update:model-value', $event.target.value)"
+      :class="{
+        'border-[red]': !meta.valid && meta.dirty,
+      }"
     />
+
     <template v-if="icon">
       <img
         :src="icon"
         alt="icon"
         class="absolute right-[14px] top-1/2 -translate-y-1/2"
-    /></template>
+      />
+    </template>
+    <span class="text-[12px] font-bold">{{ errorMessage }}</span>
   </div>
 </template>

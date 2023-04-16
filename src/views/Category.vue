@@ -1,5 +1,6 @@
 <script setup>
 import { computed, onMounted, ref, watch } from "vue";
+import { Form as VeeForm } from "vee-validate";
 import TheBreadcrumb from "@/components/TheBreadcrumb.vue";
 import AppButton from "@/components/ui/AppButton.vue";
 import playIcon from "~/icons/play-icon.svg";
@@ -244,25 +245,35 @@ watch(
             :open="true"
             :full-with="false"
           >
-            <div class="flex gap-[10px]">
-              <AppInput
-                :relative="true"
-                type="number"
-                min="1"
-                v-model.number="min"
-                placeholder="Min"
-                class="basis-6/12 border-b border-transparent border-b-neutral-10 bg-neutral-0 pl-[10px] text-body14m placeholder-blue-dark"
-                :icon="minMaxIcon"
-              />
-              <AppInput
-                :relative="true"
-                type="number"
-                min="1"
-                v-model.number="max"
-                placeholder="Max"
-                class="basis-6/12 border-b border-transparent border-b-neutral-10 bg-neutral-0 pl-[10px] text-body14m placeholder-blue-dark"
-                :icon="minMaxIcon"
-              />
+            <div class="flex gap-[20px]">
+              <div class="relative w-full">
+                <input
+                  type="number"
+                  min="1"
+                  v-model.lazy="min"
+                  placeholder="Min"
+                  class="w-full basis-6/12 border border-b border-neutral-40 border-transparent border-b-neutral-10 bg-neutral-0 px-[28px] py-[14px] pl-[10px] text-[15px] text-body14m font-[500] leading-[20px] text-neutral-80 placeholder-neutral-40"
+                />
+                <img
+                  :src="minMaxIcon"
+                  alt="icon"
+                  class="absolute right-[14px] top-1/2 -translate-y-1/2"
+                />
+              </div>
+              <div class="relative w-full">
+                <input
+                  type="number"
+                  min="1"
+                  v-model="max"
+                  placeholder="Max"
+                  class="w-full basis-6/12 border border-b border-neutral-40 border-transparent border-b-neutral-10 bg-neutral-0 px-[28px] py-[14px] pl-[10px] text-[15px] text-body14m font-[500] leading-[20px] text-neutral-80 placeholder-neutral-40"
+                />
+                <img
+                  :src="minMaxIcon"
+                  alt="icon"
+                  class="absolute right-[14px] top-1/2 -translate-y-1/2"
+                />
+              </div>
             </div>
           </AppAccordion>
         </section>

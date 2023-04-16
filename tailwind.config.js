@@ -115,7 +115,11 @@ module.exports = {
       serif: ["Merriweather", "serif"],
     },
   },
-  plugins: [require("tailwind-scrollbar"), require("tailwind-scrollbar-hide")],
+  plugins: [
+    require("tailwind-scrollbar"),
+    require("tailwind-scrollbar-hide"),
+    require("@tailwindcss/forms"),
+  ],
   darkMode: "class",
   relative: true,
 };

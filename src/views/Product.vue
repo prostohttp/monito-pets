@@ -27,6 +27,10 @@ import AppProductsGrid from "@/components/pieces/AppProductsGrid.vue";
 import AppCarousel from "@/components/ui/AppCarousel.vue";
 import AppModal from "@/components/ui/AppModal.vue";
 import AppInput from "@/components/ui/AppInput.vue";
+import { Form as VeeForm, ErrorMessage } from "vee-validate";
+import AppDynamicForm from "@/components/ui/AppDynamicForm.vue";
+import * as Yup from "yup";
+import "yup-phone-lite";
 
 // Stores
 const productStore = useProductStore();
@@ -35,19 +39,50 @@ const { currentCurrency } = storeToRefs(currencyStore);
 const { setProduct } = productStore;
 const { exchangeRateProducts, product } = storeToRefs(productStore);
 // Vars
+const formSchema = {
+  fields: [
+    {
+      placeholder: "Your Name *",
+      name: "name",
+      as: "input",
+      type: "text",
+      rules: Yup.string().min(3).required().label("Your Name"),
+    },
+    {
+      placeholder: "Your Email *",
+      name: "email",
+      as: "input",
+      type: "email",
+      rules: Yup.string().email().required().label("Your Email"),
+    },
+    {
+      placeholder: "Your Phone *",
+      name: "phone",
+      as: "input",
+      type: "tel",
+      rules: Yup.string()
+        .phone("RU", "Please enter a valid phone number")
+        .required("A phone number is required")
+        .label("Your Phone"),
+    },
+    {
+      placeholder: "Your Message *",
+      name: "message",
+      as: "textarea",
+      type: "",
+      rules: Yup.string().min(10).max(300).required().label("Message"),
+      classes: "h-[100px]",
+    },
+  ],
+};
 const route = useRoute();
 const isOpen = ref(false);
 const isContact = ref(false);
-const firstName = ref("");
-const lastName = ref("");
-const phone = ref("");
-const email = ref("");
+
 // Handlers
-const submitContactHandler = () => {
-  console.log(firstName.value);
-  console.log(lastName.value);
-  console.log(phone.value);
-  console.log(email.value);
+const submitContactHandler = (values, { resetForm }) => {
+  console.info(values);
+  resetForm();
 };
 //Hooks
 onMounted(() => {
@@ -291,40 +326,13 @@ watch(
     <div v-show="isContact">
       <AppModal :isOpen="isContact" @close-handler="isContact = false">
         <h2 class="mb-[20px] text-center text-head36b">Contact us</h2>
-        <form
-          @submit.prevent="submitContactHandler"
-          class="flex flex-col gap-[15px]"
-        >
-          <AppInput
-            class="rounded-[57px]"
-            v-model="firstName"
-            placeholder="First Name"
-            required
-          />
-          <AppInput
-            class="rounded-[57px]"
-            v-model="lastName"
-            placeholder="Last Name"
-            required
-          />
-          <AppInput
-            class="rounded-[57px]"
-            v-model="phone"
-            type="tel"
-            placeholder="Phone"
-            required
-          />
-          <AppInput
-            class="rounded-[57px]"
-            v-model="email"
-            type="email"
-            placeholder="Email"
-            required
-          />
-          <AppButton class="bg-blue-black pb-[15px] pt-[15px] text-neutral-0">
-            Submit
-          </AppButton>
-        </form>
+
+        <AppDynamicForm
+          :schema="formSchema"
+          :submit-handler="submitContactHandler"
+          submit-text="Submit"
+          class="m-auto max-w-[500px]"
+        />
       </AppModal>
     </div>
   </teleport>
