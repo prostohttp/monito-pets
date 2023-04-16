@@ -75,6 +75,7 @@ const formSchema = {
     },
   ],
 };
+const formMessage = ref("");
 const route = useRoute();
 const isOpen = ref(false);
 const isContact = ref(false);
@@ -82,6 +83,7 @@ const isContact = ref(false);
 // Handlers
 const submitContactHandler = (values, { resetForm }) => {
   console.info(values);
+  formMessage.value = `Hello, ${values.name}! Form is submitted, wait to be contacted!`;
   resetForm();
 };
 //Hooks
@@ -97,6 +99,11 @@ watch(
     immediate: true,
   }
 );
+watch(isContact, (value, oldValue, onCleanup) => {
+  if (!value && oldValue) {
+    formMessage.value = "";
+  }
+});
 </script>
 
 <template>
@@ -326,7 +333,9 @@ watch(
     <div v-show="isContact">
       <AppModal :isOpen="isContact" @close-handler="isContact = false">
         <h2 class="mb-[20px] text-center text-head36b">Contact us</h2>
-
+        <p v-if="formMessage" class="mb-[10px] text-center">
+          {{ formMessage }}
+        </p>
         <AppDynamicForm
           :schema="formSchema"
           :submit-handler="submitContactHandler"

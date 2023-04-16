@@ -264,7 +264,7 @@ watch(
                 <input
                   type="number"
                   min="1"
-                  v-model="max"
+                  v-model.lazy="max"
                   placeholder="Max"
                   class="w-full basis-6/12 border border-b border-neutral-40 border-transparent border-b-neutral-10 bg-neutral-0 px-[28px] py-[14px] pl-[10px] text-[15px] text-body14m font-[500] leading-[20px] text-neutral-80 placeholder-neutral-40"
                 />
