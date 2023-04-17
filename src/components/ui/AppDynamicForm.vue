@@ -5,7 +5,7 @@ export default {
 </script>
 
 <script setup>
-import { Form as VeeForm, ErrorMessage } from "vee-validate";
+import { Form as VeeForm } from "vee-validate";
 import AppInput from "@/components/ui/AppInput.vue";
 import AppButton from "@/components/ui/AppButton.vue";
 

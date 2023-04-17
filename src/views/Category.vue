@@ -1,6 +1,5 @@
 <script setup>
 import { computed, onMounted, ref, watch } from "vue";
-import { Form as VeeForm } from "vee-validate";
 import TheBreadcrumb from "@/components/TheBreadcrumb.vue";
 import AppButton from "@/components/ui/AppButton.vue";
 import playIcon from "~/icons/play-icon.svg";
@@ -134,6 +133,7 @@ watch(
       }
     }
     productsPerPage();
+    changeCurrentSortType(sortList.value[0].value);
   },
   {
     immediate: true,

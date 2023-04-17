@@ -65,7 +65,7 @@ export default {
       class="w-full border border-neutral-40 px-[28px] py-[14px] text-[15px] font-[500] leading-[20px] text-neutral-80 placeholder-neutral-40"
       v-bind="$attrs"
       :class="{
-        'border-[red]': !meta.valid && meta.dirty,
+        'bg-orange/10': !meta.valid && meta.dirty,
       }"
     />
 

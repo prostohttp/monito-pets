@@ -26,8 +26,6 @@ import c7 from "~/images/c7.png";
 import AppProductsGrid from "@/components/pieces/AppProductsGrid.vue";
 import AppCarousel from "@/components/ui/AppCarousel.vue";
 import AppModal from "@/components/ui/AppModal.vue";
-import AppInput from "@/components/ui/AppInput.vue";
-import { Form as VeeForm, ErrorMessage } from "vee-validate";
 import AppDynamicForm from "@/components/ui/AppDynamicForm.vue";
 import * as Yup from "yup";
 import "yup-phone-lite";
@@ -99,7 +97,7 @@ watch(
     immediate: true,
   }
 );
-watch(isContact, (value, oldValue, onCleanup) => {
+watch(isContact, (value, oldValue) => {
   if (!value && oldValue) {
     formMessage.value = "";
   }
