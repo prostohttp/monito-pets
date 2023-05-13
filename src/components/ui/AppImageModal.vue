@@ -61,10 +61,7 @@ onUnmounted(() => {
       class="fixed right-0 top-1/2 z-[1002] h-[30px] w-[30px] cursor-pointer rounded-full sm:right-[16px]"
       @click="emit('nextHandler')"
     />
-    <div
-      class="fixed inset-0 z-[1001] h-full w-full bg-blue-dark/70"
-      @click="emit('closeHandler')"
-    >
+    <div class="fixed inset-0 z-[1001] h-full w-full bg-blue-dark/70">
       <img
         :src="closeIcon"
         alt="close"
