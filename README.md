@@ -1,6 +1,6 @@
 # Monito Pets
 ## Vue 3, Vue Router, Pinia
-### monito-pets-vue3.netlify.app
+monito-pets-vue3.netlify.app
 
 ### Страницы
 # 
