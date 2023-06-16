@@ -235,7 +235,7 @@ const clickOutsideMainMenu = () => {
         >
           <img
             :src="currentCurrency.flag"
-            :alt="currencyList.currency"
+            :alt="currencyList['currency']"
             class="h-[20px] w-[20px] rounded-full border border-neutral-10 object-cover"
           />
           <span class="flex justify-between gap-[5px]">

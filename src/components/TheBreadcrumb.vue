@@ -1,11 +1,11 @@
 <script setup>
 import { useRoute } from "vue-router";
 import { onMounted, ref, watch } from "vue";
-import { useProductStore } from "@/stores/products";
-import { usePartnersStore } from "@/stores/partners";
-import { useCategoryStore } from "@/stores/category";
-import { useArticlesStore } from "@/stores/articles";
-import { useInformationStore } from "@/stores/information";
+import { useProductStore } from "@/stores/products.js";
+import { usePartnersStore } from "@/stores/partners.js";
+import { useCategoryStore } from "@/stores/category.js";
+import { useArticlesStore } from "@/stores/articles.js";
+import { useInformationStore } from "@/stores/information.js";
 import { storeToRefs } from "pinia";
 
 const productsStore = useProductStore();
