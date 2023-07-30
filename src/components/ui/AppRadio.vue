@@ -11,8 +11,8 @@ const radio = ref("");
 </script>
 
 <template>
-  <div class="flex mb-[10px]" v-for="item in list">
-    <label class="flex gap-[12px] w-auto"
+  <div class="mb-[10px] flex" v-for="item in list">
+    <label class="flex w-auto gap-[12px]"
       ><input
         type="radio"
         v-model="radio"
@@ -20,9 +20,9 @@ const radio = ref("");
         class="hidden"
         :disabled="item.disabled"
       /><span
-        class="w-[20px] h-[20px] block border rounded-big"
+        class="block h-[20px] w-[20px] rounded-big border"
         :class="{
-          'border-blue-dark border-[6px]': radio === item.value,
+          'border-[6px] border-blue-dark': radio === item.value,
           'border-neutral-60': radio !== item.value,
           'border-neutral-60 bg-neutral-20': item.disabled === true,
         }"

@@ -39,7 +39,7 @@ onMounted(() => {
     currentRouteParam.value = "category";
   }
   if (route.params.article) {
-    routeForStore.value = articles.value;
+    routeForStore.value = articlesStore.articles;
     currentRouteParam.value = "article";
   }
   // TODO add information store

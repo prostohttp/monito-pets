@@ -228,10 +228,14 @@ const clickOutsideMainMenu = () => {
         >
           Join the community
         </AppButton>
+        <!--        <div-->
+        <!--          class="relative flex w-[70px] cursor-pointer items-center gap-[4px]"-->
+        <!--          @click="isOpen = !isOpen"-->
+        <!--          v-click-outside="clickOutside"-->
+        <!--        >-->
         <div
           class="relative flex w-[70px] cursor-pointer items-center gap-[4px]"
           @click="isOpen = !isOpen"
-          v-click-outside="clickOutside"
         >
           <img
             :src="currentCurrency.flag"
