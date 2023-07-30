@@ -9,14 +9,13 @@ import AppInput from "@/components/ui/AppInput.vue";
 import AppAccordion from "@/components/ui/AppAccordion.vue";
 import { menuItems } from "@/api/mock/menu";
 import AppButton from "@/components/ui/AppButton.vue";
-import { useCurrencyStore } from "@/stores/currency";
-import { storeToRefs } from "pinia";
 import down from "~/icons/down.svg";
 import up from "~/icons/up.svg";
 import AppSubMenu from "@/components/pieces/AppSubMenu.vue";
 import { useCategoryStore } from "@/stores/category";
 import { useRouter } from "vue-router";
 import { Form as VeeForm } from "vee-validate";
+import AppCurrencySwitcher from "@/components/pieces/AppCurrencySwitcher.vue";
 // vars
 const menuIsVisible = ref(false);
 const searchIsVisible = ref(false);
@@ -27,11 +26,8 @@ const initialSearch = {
   search: localStorage.getItem("search") || "",
 };
 // Store
-const currencyStore = useCurrencyStore();
 const categoryStore = useCategoryStore();
 
-const { currentCurrency } = storeToRefs(currencyStore);
-const { setCurrentCurrency, currencyList } = currencyStore;
 const { categories } = categoryStore;
 // methods
 const searchHandler = () => {
@@ -44,11 +40,10 @@ const menuHandler = () => {
   if (menuIsVisible.value && searchIsVisible.value)
     searchIsVisible.value = !searchIsVisible.value;
 };
-const currencyToggleHandler = (index) => {
-  isOpen.value = !isOpen.value;
-  setCurrentCurrency(index);
-  window.localStorage.setItem("currency", index);
+const openHandler = (value) => {
+  isOpen.value = value;
 };
+
 const searchSubmitHandler = (values, { resetForm }) => {
   localStorage.setItem("search", values.search);
   resetForm({
@@ -58,11 +53,11 @@ const searchSubmitHandler = (values, { resetForm }) => {
   });
   router.push({ name: "search", query: { s: values.search } });
 };
-const clickOutside = () => {
-  if (isOpen.value) {
-    isOpen.value = !isOpen.value;
-  }
-};
+// const clickOutside = () => {
+//   if (isOpen.value) {
+//     isOpen.value = !isOpen.value;
+//   }
+// };
 const clickOutsideMainMenu = () => {
   if (subMenu.value) {
     subMenu.value = !subMenu.value;
@@ -233,42 +228,7 @@ const clickOutsideMainMenu = () => {
         <!--          @click="isOpen = !isOpen"-->
         <!--          v-click-outside="clickOutside"-->
         <!--        >-->
-        <div
-          class="relative flex w-[70px] cursor-pointer items-center gap-[4px]"
-          @click="isOpen = !isOpen"
-        >
-          <img
-            :src="currentCurrency.flag"
-            :alt="currencyList['currency']"
-            class="h-[20px] w-[20px] rounded-full border border-neutral-10 object-cover"
-          />
-          <span class="flex justify-between gap-[5px]">
-            {{ currentCurrency.currency }}
-            <img :src="down" v-if="!isOpen" alt="icon" class="w-[12px]" />
-            <img :src="up" v-else alt="icon" class="w-[12px]" />
-          </span>
-          <transition name="fade">
-            <nav v-if="isOpen">
-              <ul
-                class="absolute right-0 top-[30px] z-[1000] w-[100px] rounded-[6px] border border-neutral-20 bg-white px-[20px] py-[10px]"
-              >
-                <li
-                  v-for="(curr, index) in currencyList"
-                  :key="curr.code"
-                  @click.stop="currencyToggleHandler(index)"
-                  class="flex items-center gap-[4px] py-[10px] hover:cursor-pointer"
-                >
-                  <img
-                    :src="curr.flag"
-                    :alt="curr.currency"
-                    class="h-[20px] w-[20px] rounded-full border border-neutral-10 object-cover"
-                  />
-                  <span>{{ curr.currency }}</span>
-                </li>
-              </ul>
-            </nav>
-          </transition>
-        </div>
+        <AppCurrencySwitcher :isOpen="isOpen" @open-handler="openHandler" />
       </div>
     </div>
     <!-- for banner-->
