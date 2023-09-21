@@ -177,7 +177,7 @@ const isOpen = ref(false);
           </div>
         </div>
         <div class="basis-6/12">
-          <img :src="handImage" class="h-full" alt="hand image" />
+          <img :src="handImage" class="" alt="hand image" />
         </div>
       </div>
     </section>
