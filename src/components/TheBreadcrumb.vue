@@ -1,6 +1,6 @@
 <script setup>
 import { useRoute } from "vue-router";
-import { onMounted, ref, watch } from "vue";
+import { onMounted, ref, watch, watchEffect } from "vue";
 import { useProductStore } from "@/stores/products.js";
 import { usePartnersStore } from "@/stores/partners.js";
 import { useCategoryStore } from "@/stores/category.js";
@@ -17,7 +17,6 @@ const { information } = storeToRefs(informationStore);
 const { products } = storeToRefs(productsStore);
 const { partners } = storeToRefs(partnersStore);
 const { flattenCategories } = storeToRefs(categoryStore);
-const { articles } = storeToRefs(articlesStore);
 
 const route = useRoute();
 const routeForStore = ref([]);
@@ -54,7 +53,7 @@ onMounted(() => {
   }
 });
 
-watch(route, () => {
+watchEffect(() => {
   if (currentRouteParam.value) {
     activePage.value = routeForStore.value.find((el) => {
       return el.id === +route.params[currentRouteParam.value];
@@ -64,17 +63,13 @@ watch(route, () => {
 </script>
 
 <template>
-  <ul
-    class="mb-[17px] mt-[12px] flex items-center gap-[40px] text-body14m text-neutral-60 lg:mt-0"
-  >
+  <ul class="mb-[17px] mt-[12px] flex items-center gap-[40px] text-body14m text-neutral-60 lg:mt-0">
     <li
-      class="relative after:absolute after:-right-[20px] after:top-[5px] after:flex after:h-[9px] after:w-[5px] after:items-center after:justify-center after:bg-[url('~/icons/breadIcon.svg')] after:bg-cover after:bg-no-repeat"
-    >
+      class="relative after:absolute after:-right-[20px] after:top-[5px] after:flex after:h-[9px] after:w-[5px] after:items-center after:justify-center after:bg-[url('~/icons/breadIcon.svg')] after:bg-cover after:bg-no-repeat">
       <router-link :to="{ name: 'home' }">Home</router-link>
     </li>
     <li
-      class="relative after:absolute after:-right-[20px] after:top-[5px] after:flex after:h-[9px] after:w-[5px] after:items-center after:justify-center after:bg-[url('~/icons/breadIcon.svg')] after:bg-cover after:bg-no-repeat last:after:hidden"
-    >
+      class="relative after:absolute after:-right-[20px] after:top-[5px] after:flex after:h-[9px] after:w-[5px] after:items-center after:justify-center after:bg-[url('~/icons/breadIcon.svg')] after:bg-cover after:bg-no-repeat last:after:hidden">
       {{ activePage ? activePage : route.meta.title ? route.meta.title : null }}
     </li>
   </ul>

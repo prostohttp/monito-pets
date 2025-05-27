@@ -4,7 +4,7 @@ import closeIcon from "~/icons/close-white.svg";
 import nextIcon from "~/icons/forward.svg";
 import prevIcon from "~/icons/back.svg";
 
-const { isOpen, overflow } = defineProps({
+const { isOpen, overflow, activeImageId, length } = defineProps({
   // vars
   isOpen: {
     type: Boolean,

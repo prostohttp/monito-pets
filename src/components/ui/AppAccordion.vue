@@ -19,13 +19,11 @@ const { title, open, fullWith } = defineProps({
   },
 });
 
-const isOpen = ref(open);
-</script>
+defineOptions({
+  inheritAttrs: false
+})
 
-<script>
-export default {
-  inheritAttrs: false,
-};
+const isOpen = ref(open);
 </script>
 
 <template>

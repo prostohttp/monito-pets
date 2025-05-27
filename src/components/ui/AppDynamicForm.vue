@@ -1,9 +1,3 @@
-<script>
-export default {
-  inheritAttrs: false,
-};
-</script>
-
 <script setup>
 import { Form as VeeForm } from "vee-validate";
 import AppInput from "@/components/ui/AppInput.vue";
@@ -32,6 +26,11 @@ const {} = defineProps({
     required: false,
   },
 });
+
+defineOptions({
+  inheritAttrs: false
+})
+
 </script>
 
 <template>
